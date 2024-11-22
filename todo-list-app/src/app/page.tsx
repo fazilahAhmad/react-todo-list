@@ -36,6 +36,15 @@ export default function Home() {
   }, [todos]);
 
   const handleAddTodo = (todo: Todo) => {
+    const todoExists = todos.some(
+      (t) => t.title === todo.title && t.description === todo.description
+    );
+
+    if (todoExists) {
+      alert("This task already exists!");
+      return;
+    }
+
     if (editingTodo) {
       setTodos((prevTodos) =>
         prevTodos.map((t) =>
